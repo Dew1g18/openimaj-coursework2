@@ -33,18 +33,20 @@ public class App {
 //        DisplayUtilities.display(image);
 
 
-//        float[][] kernel = {{1/9,1/9,1/9},{1/9,1/9,1/9},{1/9,1/9,1/9}};
-//        float[][] kernel = {{-1,0,1}, {0,0,0},{1,0,-1}};
-        float[][] kernel = {{-1,-1,-1},{-1,8,-1}, {-1,-1,-1}};
-//        float[][] kernel = {{0,0,0}, {0,1,0}, {0,0,0}};
+//        float[][] kernel = {{1/9,1/9,1/9},{1/9,1/9,1/9},{1/9,1/9,1/9}};//Averaging (doesnt work)
+//        float[][] kernel = {{-1,0,1}, {0,0,0},{1,0,-1}};//Weak edge detection
+        float[][] kernel = {{-1,-1,-1},{-1,8,-1}, {-1,-1,-1}};//Strong edge detection
+//        float[][] kernel = {{0,0,0}, {0,1,0}, {0,0,0}};//Identity
+//        float[][] kernel = {{0,-1,0}, {-1,5,-1}, {0,-1,0}};//sharpening
+
         MyConvolution mycon = new MyConvolution( kernel);
 
 
         try{
 
-
             FImage image = ImageUtilities.readF(new URL("http://static.openimaj.org/media/tutorial/sinaface.jpg"));
-//            DisplayUtilities.display(image);
+            DisplayUtilities.display(image);
+            //            DisplayUtilities.display(image);
             image.processInplace(mycon);
 
             DisplayUtilities.display(image);

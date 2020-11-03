@@ -40,10 +40,28 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
         System.out.println(kerCol);
         System.out.println(kerRows);
 
+        for(int y=0; y<imRows; y++){
+            for(int x = 0; x<tc+1; x++){
+                image.setPixel(x,y,0f);
+            }
+            for(int x=imCols-tc-1; x<imCols+1; x++){
+                image.setPixel(x,y,0f);
+            }
+        }
+        for(int x=0; x<imCols; x++){
+            for(int y = 0; y<tr+1; y++){
+                image.setPixel(x,y,0f);
+            }
+            for(int y=imRows-tr-1; y<imRows+1; y++){
+                image.setPixel(x,y,0f);
+            }
+        }
+
+
+
         for (int x = tc+1; x<imCols-tc-1; x++ ){
             for (int y=tr+1; y<imRows-tr-1; y++){
                 /**
-                 * Cutting off the borders of the image in the loops
                  */
 //                System.out.println(x+"  "+y);
                 float sum = 0;
@@ -56,21 +74,9 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
 //                    System.out.println(iwin);
                     for (int jwin=kerRows-1; jwin>-1; jwin--){
 
-//                        System.out.println(x+":"+y);
-//                        System.out.println(iwin+" : "+jwin);
-//                        System.out.println(tc+" : "+tr);
-//                        System.out.println(imCols+" : "+imRows);
-//                        sum= sum+image.pixels[y+iwin-tr-1][x+jwin-tc-1]*kernel[kerRows-jwin-1][kerCol-iwin-1];
-//                        System.out.println(iwin+" : "+ jwin);
-
 //                        if(!Float.isNaN(image.pixels[y+jwin-tr-1][x+iwin-tc-1])){
                             sum= sum+output.pixels[y+jwin-tr-1][x+iwin-tc-1]*kernel[iwin][jwin];
 //                        }
-//                        sum= sum+image.pixels[y+jwin-tr-1][x+iwin-tc-1]*kernel[iwin][jwin];
-//                        System.out.println("pixel done");
-//                        System.out.println(y+jwin-tr-1);
-//                        System.out.println(x+iwin-tc-1);
-//                        System.out.println(image.pixels[y+jwin-tr-1][x+iwin-tc-1]);
 
 
 
