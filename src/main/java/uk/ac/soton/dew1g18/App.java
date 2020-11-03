@@ -33,8 +33,11 @@ public class App {
 //        DisplayUtilities.display(image);
 
 
-        float[][] kernel = {{-1, 0,1}, {1,0,-1}};
+//        float[][] kernel = {{1/9,1/9,1/9},{1/9,1/9,1/9},{1/9,1/9,1/9}};
+//        float[][] kernel = {{-1,0,1}, {0,0,0},{1,0,-1}};
+        float[][] kernel = {{-1,-1,-1},{-1,8,-1}, {-1,-1,-1}};
         MyConvolution mycon = new MyConvolution( kernel);
+
 
         try{
 
