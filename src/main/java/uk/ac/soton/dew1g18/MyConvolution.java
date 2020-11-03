@@ -60,15 +60,24 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
 //                        System.out.println(iwin+" : "+jwin);
 //                        System.out.println(tc+" : "+tr);
 //                        System.out.println(imCols+" : "+imRows);
-//                        sum= sum+image.pixels[y+iwin-tr-1][x+jwin-tc-1]*kernel[kerRows-jwin+1][kerCol-iwin+1];
+//                        sum= sum+image.pixels[y+iwin-tr-1][x+jwin-tc-1]*kernel[kerRows-jwin-1][kerCol-iwin-1];
+//                        System.out.println(iwin+" : "+ jwin);
 
-                        sum= sum+image.pixels[y+jwin-tr-1][x+iwin-tc-1]*kernel[jwin][iwin];
+//                        if(!Float.isNaN(image.pixels[y+jwin-tr-1][x+iwin-tc-1])){
+                            sum= sum+output.pixels[y+jwin-tr-1][x+iwin-tc-1]*kernel[iwin][jwin];
+//                        }
+//                        sum= sum+image.pixels[y+jwin-tr-1][x+iwin-tc-1]*kernel[iwin][jwin];
 //                        System.out.println("pixel done");
+//                        System.out.println(y+jwin-tr-1);
+//                        System.out.println(x+iwin-tc-1);
+//                        System.out.println(image.pixels[y+jwin-tr-1][x+iwin-tc-1]);
+
+
 
                     }
                 }
 //                System.out.println(imRows);
-                image.setPixel(x,y, sum);
+                image.setPixel(x,y,sum);
             }
         }
 

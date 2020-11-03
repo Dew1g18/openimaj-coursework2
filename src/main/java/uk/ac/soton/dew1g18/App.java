@@ -36,6 +36,7 @@ public class App {
 //        float[][] kernel = {{1/9,1/9,1/9},{1/9,1/9,1/9},{1/9,1/9,1/9}};
 //        float[][] kernel = {{-1,0,1}, {0,0,0},{1,0,-1}};
         float[][] kernel = {{-1,-1,-1},{-1,8,-1}, {-1,-1,-1}};
+//        float[][] kernel = {{0,0,0}, {0,1,0}, {0,0,0}};
         MyConvolution mycon = new MyConvolution( kernel);
 
 
@@ -43,6 +44,7 @@ public class App {
 
 
             FImage image = ImageUtilities.readF(new URL("http://static.openimaj.org/media/tutorial/sinaface.jpg"));
+//            DisplayUtilities.display(image);
             image.processInplace(mycon);
 
             DisplayUtilities.display(image);
