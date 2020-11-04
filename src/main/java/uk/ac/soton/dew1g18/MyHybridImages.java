@@ -30,7 +30,11 @@ public class MyHybridImages {
         //image will also have the same height & width as the inputs.
         DisplayUtilities.display(lowImage);
 
-        convolve(getKernel(1),lowImage );
+        /**
+         * convolve low then high filter passes.
+         */
+        convolve(getKernel(lowSigma),lowImage );
+//        convolve(getKernel(highSigma), highImage);
 
         DisplayUtilities.display(lowImage);
 
@@ -40,7 +44,7 @@ public class MyHybridImages {
     }
 
 
-    protected static float[][] getKernel(int sigma){
+    protected static float[][] getKernel(float sigma){
         int size = (int) (8.0f*sigma+ 1.0f );
         if (size%2==0){size++;} //Size must be odd for kernel apparently...
         return Gaussian2D.createKernelImage(size, sigma).pixels;
