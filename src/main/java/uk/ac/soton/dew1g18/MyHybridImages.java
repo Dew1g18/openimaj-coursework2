@@ -1,6 +1,7 @@
 package uk.ac.soton.dew1g18;
 
 import org.openimaj.image.DisplayUtilities;
+import org.openimaj.image.FImage;
 import org.openimaj.image.MBFImage;
 import org.openimaj.image.processing.convolution.Gaussian2D;
 
@@ -29,18 +30,36 @@ public class MyHybridImages {
         //Note that the input images are expected to have the same size, and the output
         //image will also have the same height & width as the inputs.
         DisplayUtilities.display(lowImage);
+        DisplayUtilities.display(highImage);
 
         /**
          * convolve low then high filter passes.
          */
-        convolve(getKernel(lowSigma),lowImage );
-//        convolve(getKernel(highSigma), highImage);
+        lowPass(getKernel(lowSigma),lowImage );
+        highPass(getKernel(highSigma) , highImage);
 
         DisplayUtilities.display(lowImage);
+        DisplayUtilities.display(highImage);
 
 
 
-        return lowImage;
+
+
+        return combine(lowImage, highImage);
+    }
+
+    protected static MBFImage combine(MBFImage low, MBFImage high){
+
+        for(int row = 0; row<low.getHeight(); row++){
+            for(int col=0; col<low.getHeight(); col++){
+                Float[] newPixel = low.getPixel(row, col);
+                for(int colour = 0; colour<newPixel.length; colour++){
+                    newPixel[colour] += high.getPixel(row,col)[colour];
+                }
+                low.setPixel(row, col, newPixel);
+            }
+        }
+        return low;
     }
 
 
@@ -50,17 +69,48 @@ public class MyHybridImages {
         return Gaussian2D.createKernelImage(size, sigma).pixels;
     }
 
-    protected static MBFImage convolve(float[][] kernel, MBFImage image){
+    protected static MBFImage lowPass(float[][] kernel, MBFImage image){
         MyConvolution myCon = new MyConvolution(kernel);
         image.processInplace(myCon);
         return image;
     }
 
-    protected static float getLowPassSigma(MBFImage image){
-        return 1f;
+
+    protected static MBFImage highPass(float[][] kernel, MBFImage image){
+        int cols = image.getCols();
+        int rows = image.getRows();
+        MBFImage clone = image.clone();
+        lowPass(kernel, clone);
+        for (int x =0; x<cols; x++){
+            for(int y = 0; y<rows; y++){
+                Float[] newPixVal = image.getPixel(x,y);
+                for (int n = 0; n<newPixVal.length; n++){
+                    newPixVal[n]-=clone.getPixel(x,y)[n];
+                }
+                image.setPixel(x,y, newPixVal);
+            }
+        }
+
+        return image;
     }
 
-    private float getHighPassSigma(MBFImage image){
-        return 1f;
-    }
+
+    /**
+     * Want to write something to get the standard dev of an imaves pixels and work out what sigma
+     * for low and high band filters would be to automate that step, however my peers are finding
+     * sigmas and hardcoding them, and I have many other courseworks to get on with so I'm not going
+     * to worry about this yet
+     */
+//
+//    public float getLowPassSigma(MBFImage image){
+//        return 1f;
+//    }
+//
+//    public float getHighPassSigma(MBFImage image){
+//        return 1f;
+//    }
+//
+//    public float sigma(FImage image){
+//
+//    }
 }

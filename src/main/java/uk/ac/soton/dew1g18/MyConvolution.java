@@ -62,22 +62,12 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
          * Was zero padding by looping through the edges, POINTLESS!!
          * Just set the whole image to black, your reading from a clone to avoid concurrent modification anyway!!
          */
-        image.fill(0f);
-
-
-
+//        image.fill(0f);
 
         for (int x = tc+1; x<imCols-tc-1; x++ ){
             for (int y=tr+1; y<imRows-tr-1; y++){
-                /**
-                 */
-//                System.out.println(x+"  "+y);
+
                 float sum = 0;
-//                for (int iwin=1; iwin<kerCol; iwin++){
-//                    for (int jwin=1; jwin<kerCol; jwin++){
-//                        sum= sum+image.pixels[y+iwin-tr-1][x+jwin-tc-1]*kernel[kerRows-jwin+1][kerCol-iwin+1];
-
-
                 for(int iwin=kerCol-1;iwin>-1; iwin-- ){
 //                    System.out.println(iwin);
                     for (int jwin=kerRows-1; jwin>-1; jwin--){
@@ -90,10 +80,8 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
 
                     }
                 }
-//                System.out.println(imRows);
                 image.setPixel(x,y,sum);
             }
         }
-
     }
 }
