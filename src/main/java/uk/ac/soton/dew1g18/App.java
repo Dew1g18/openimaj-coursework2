@@ -67,16 +67,17 @@ public class App {
          * Hybrid image practice space
          */
         try {
-            MBFImage highImage = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav.jpg"));
-            MBFImage lowImage = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam.jpg"));
+            MBFImage highImage = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav2.jpg"));
+            MBFImage lowImage = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam2.jpg"));
 
 //            DisplayUtilities.display(highImage);
 //            DisplayUtilities.display(lowImage);
 
             MyHybridImages mh = new MyHybridImages();
             DisplayUtilities.display(
-                    mh.makeHybrid(lowImage, 5f, highImage, 3f)
-//                    mh.makeHybrid(lowImage, 5f, highImage, 6f)
+//                    mh.makeHybrid(lowImage, 3f, highImage, 5f)//smol 3
+                    mh.makeHybrid(lowImage, 3f, highImage, 3f)//smol 2
+//                    mh.makeHybrid(lowImage, 5f, highImage, 3f)//smol 1
             );
 
 
