@@ -1,5 +1,6 @@
 package uk.ac.soton.dew1g18;
 
+import org.apache.tools.ant.taskdefs.EchoXML;
 import org.openimaj.image.DisplayUtilities;
 import org.openimaj.image.FImage;
 import org.openimaj.image.MBFImage;
@@ -29,8 +30,8 @@ public class MyHybridImages {
         //an instance of here if you so wish.
         //Note that the input images are expected to have the same size, and the output
         //image will also have the same height & width as the inputs.
-        DisplayUtilities.display(lowImage);
-        DisplayUtilities.display(highImage);
+//        DisplayUtilities.display(lowImage);
+//        DisplayUtilities.display(highImage);
 
         /**
          * convolve low then high filter passes.
@@ -38,8 +39,8 @@ public class MyHybridImages {
         lowPass(getKernel(lowSigma),lowImage );
         highPass(getKernel(highSigma) , highImage);
 
-        DisplayUtilities.display(lowImage);
-        DisplayUtilities.display(highImage);
+//        DisplayUtilities.display(lowImage);
+//        DisplayUtilities.display(highImage);
 
 
 
@@ -49,14 +50,16 @@ public class MyHybridImages {
     }
 
     protected static MBFImage combine(MBFImage low, MBFImage high){
-
-        for(int row = 0; row<low.getHeight(); row++){
-            for(int col=0; col<low.getHeight(); col++){
-                Float[] newPixel = low.getPixel(row, col);
+        int rows = low.getRows();
+        int cols = low.getCols();
+        for(int col=0; col<cols; col++){
+            for(int row = 0; row<rows; row++){
+                Float[] newPixel = low.getPixel(col, row);
                 for(int colour = 0; colour<newPixel.length; colour++){
-                    newPixel[colour] += high.getPixel(row,col)[colour];
+                    newPixel[colour] += high.getPixel(col, row)[colour];
+
                 }
-                low.setPixel(row, col, newPixel);
+                low.setPixel(col, row, newPixel);
             }
         }
         return low;

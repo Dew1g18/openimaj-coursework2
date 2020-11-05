@@ -30,11 +30,12 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
         int kerRows= this.kernel.length;
         int kerCol = this.kernel[0].length;
 
-        float trFl = (float) Math.floor(kerRows/2);
-        float tcFl = (float) Math.floor(kerCol/2);
-        int tr = Integer.parseInt(Double.toString(trFl).replaceAll(".0", ""));
-        int tc = Integer.parseInt(Double.toString(tcFl).replaceAll(".0", ""));
-
+//        float trFl = (float) Math.floor(kerRows/2);
+//        float tcFl = (float) Math.floor(kerCol/2);
+//        int tr = Integer.parseInt(Double.toString(trFl).replaceAll(".0", ""));
+//        int tc = Integer.parseInt(Double.toString(tcFl).replaceAll(".0", ""));
+        int tr = (int)  Math.floor(kerRows/2);
+        int tc = (int) Math.floor(kerCol/2);
 
         System.out.println(kerCol);
         System.out.println(kerRows);
@@ -75,8 +76,6 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
 //                        if(!Float.isNaN(image.pixels[y+jwin-tr-1][x+iwin-tc-1])){
                             sum= sum+clone.pixels[y+jwin-tr-1][x+iwin-tc-1]*kernel[iwin][jwin];
 //                        }
-
-
 
                     }
                 }
