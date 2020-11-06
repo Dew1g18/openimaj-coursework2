@@ -67,8 +67,11 @@ public class App {
          * Hybrid image practice space
          */
         try {
-            MBFImage highImage = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav2.jpg"));
-            MBFImage lowImage = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam2.jpg"));
+            MBFImage dave = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav2.jpg"));
+            MBFImage sam = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam2.jpg"));
+            MBFImage davClone = dave.clone();
+            MBFImage samClone = sam.clone();
+
 
 //            DisplayUtilities.display(highImage);
 //            DisplayUtilities.display(lowImage);
@@ -76,9 +79,26 @@ public class App {
             MyHybridImages mh = new MyHybridImages();
             DisplayUtilities.display(
 //                    mh.makeHybrid(lowImage, 3f, highImage, 5f)//smol 3
-                    mh.makeHybrid(lowImage, 3f, highImage, 3f)//smol 2
+                    mh.makeHybrid(dave, 5f, sam, 5f)//smol 2
 //                    mh.makeHybrid(lowImage, 5f, highImage, 3f)//smol 1
             );
+
+            DisplayUtilities.display(
+                    mh.makeHybrid(samClone, 4f, davClone, 3f)//reverse)
+            );
+
+            /**
+             * best so far below for testing
+             */
+//            DisplayUtilities.display(
+////                    mh.makeHybrid(lowImage, 3f, highImage, 5f)//smol 3
+//                    mh.makeHybrid(dave, 3f, sam, 5f)//smol 2
+////                    mh.makeHybrid(lowImage, 5f, highImage, 3f)//smol 1
+//            );
+//
+//            DisplayUtilities.display(
+//                    mh.makeHybrid(samClone, 5f, davClone, 3f)//reverse)
+//            );
 
 
 
