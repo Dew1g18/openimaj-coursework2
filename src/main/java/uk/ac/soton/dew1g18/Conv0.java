@@ -4,10 +4,15 @@ import org.openimaj.image.FImage;
 import org.openimaj.image.pixel.Pixel;
 import org.openimaj.image.processor.SinglebandImageProcessor;
 
-public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
+public class Conv0 implements SinglebandImageProcessor<Float, FImage> {
     private float[][] kernel;
 
-    public MyConvolution(float[][] kernel) {
+    /**
+     * OLD VERSION OF CONVOLUTION WHICH IGNORES THE EDGES
+     * @param kernel
+     */
+
+    public Conv0(float[][] kernel) {
         //note that like the image pixels kernel is indexed by [row][column]
         this.kernel = kernel;
     }
@@ -37,8 +42,8 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
         int tr = (int)  Math.floor(kerRows/2);
         int tc = (int) Math.floor(kerCol/2);
 
-//        System.out.println(kerCol);
-//        System.out.println(kerRows);
+        System.out.println(kerCol);
+        System.out.println(kerRows);
 
 
 //
@@ -65,8 +70,8 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
          */
 //        image.fill(0f);
 
-        for (int x = 0; x<imCols; x++ ){
-            for (int y=0; y<imRows; y++){
+        for (int x = tc+1; x<imCols-tc-1; x++ ){
+            for (int y=tr+1; y<imRows-tr-1; y++){
 
                 float sum = 0;
                 for(int iwin=kerCol-1;iwin>-1; iwin-- ){
@@ -78,20 +83,9 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
                          * makes more sense to me.
                          */
 
-                        try {
-                            sum = sum + clone.pixels[y + jwin - tr - 1][x + iwin - tc - 1] * kernel[iwin][jwin];
-                        }catch(ArrayIndexOutOfBoundsException e){
-                            //Sum stays the same
-                            /**
-                             * I know this looks jankey but this was the quickest way I could see to implement zero
-                             * padding. I had already had tested the algorithm with the excerpt's algorithm where
-                             * the outside pixels are just ignored, however now I just dont add anything when I try to
-                             * process a pixel outside the image boundaries. This is the same as adding something
-                             * multiplied  by zero.
-                             */
-                            continue;
-                        }
-//
+//                        if(!Float.isNaN(image.pixels[y+jwin-tr-1][x+iwin-tc-1])){
+                        sum= sum+clone.pixels[y+jwin-tr-1][x+iwin-tc-1]*kernel[iwin][jwin];
+//                        }
 
                     }
                 }
@@ -99,5 +93,4 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
             }
         }
     }
-
 }

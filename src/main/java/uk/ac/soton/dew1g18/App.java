@@ -34,6 +34,11 @@ public class App {
 //        //Display the image
 //        DisplayUtilities.display(image);
 
+        /**
+         * Testing the convolution. (Conv0 is another class I made to try zero padding as I reallised I was insetead
+         * ignoring the edges rather than processing them with zeros.
+         */
+//
 //
 ////        float[][] kernel = {{1/9,1/9,1/9},{1/9,1/9,1/9},{1/9,1/9,1/9}};//Averaging (doesnt work)
 ////        float[][] kernel = {{-1,0,1}, {0,0,0},{1,0,-1}};//Weak edge detection
@@ -61,7 +66,22 @@ public class App {
 //        }catch(Exception e){
 //            e.printStackTrace();
 //        }
-
+//        Conv0 con = new Conv0( kernel);
+//
+//
+//        try{
+//
+//            FImage image = ImageUtilities.readF(new URL("http://static.openimaj.org/media/tutorial/sinaface.jpg"));
+//            DisplayUtilities.display(image);
+//            //            DisplayUtilities.display(image);
+//            image.processInplace(con);
+//
+//            DisplayUtilities.display(image);
+//
+//
+//        }catch(Exception e){
+//            e.printStackTrace();
+//        }
 
         /**
          * Hybrid image practice space

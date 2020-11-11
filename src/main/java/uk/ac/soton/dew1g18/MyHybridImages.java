@@ -85,6 +85,7 @@ public class MyHybridImages {
          *  the kernel comes from the gauseian and sigma in in getKernel
          */
         MyConvolution myCon = new MyConvolution(kernel);
+//        Conv0 myCon = new Conv0(kernel);
         image.processInplace(myCon);
         return image;
     }
