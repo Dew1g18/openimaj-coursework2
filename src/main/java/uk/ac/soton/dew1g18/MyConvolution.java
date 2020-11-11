@@ -72,6 +72,11 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
                 for(int iwin=kerCol-1;iwin>-1; iwin-- ){
 //                    System.out.println(iwin);
                     for (int jwin=kerRows-1; jwin>-1; jwin--){
+                        /**
+                         * deviated from the excerpt a bit by reversing the direction the template cycles through rather
+                         * than using another increasing number and reversing in the getter for the kernel because it
+                         * makes more sense to me.
+                         */
 
 //                        if(!Float.isNaN(image.pixels[y+jwin-tr-1][x+iwin-tc-1])){
                             sum= sum+clone.pixels[y+jwin-tr-1][x+iwin-tc-1]*kernel[iwin][jwin];

@@ -67,6 +67,8 @@ public class App {
          * Hybrid image practice space
          */
         try {
+//            MBFImage dave = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav2.jpg"));
+//            MBFImage sam = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam2.jpg"));
             MBFImage dave = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav2.jpg"));
             MBFImage sam = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam2.jpg"));
             MBFImage davClone = dave.clone();
@@ -82,6 +84,10 @@ public class App {
                     mh.makeHybrid(dave, 5f, sam, 5f)//smol 2
 //                    mh.makeHybrid(lowImage, 5f, highImage, 3f)//smol 1
             );
+
+            /**
+             * including the reverse version cause I cant decide which is better.
+             */
 
             DisplayUtilities.display(
                     mh.makeHybrid(samClone, 4f, davClone, 3f)//reverse)

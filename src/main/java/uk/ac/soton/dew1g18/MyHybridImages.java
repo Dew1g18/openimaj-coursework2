@@ -50,6 +50,9 @@ public class MyHybridImages {
     }
 
     protected static MBFImage combine(MBFImage low, MBFImage high){
+        /**
+         * Really simply loops through the pixels and adds all the pixel values to combine the images
+         */
         int rows = low.getRows();
         int cols = low.getCols();
         for(int col=0; col<cols; col++){
@@ -67,12 +70,20 @@ public class MyHybridImages {
 
 
     protected static float[][] getKernel(float sigma){
+        /**
+         * uses given sigma to get the suggested size of the kernel from the spec.
+         * then runs Gaussian2D to get a kernel.
+         */
         int size = (int) (8.0f*sigma+ 1.0f );
         if (size%2==0){size++;} //Size must be odd for kernel apparently...
         return Gaussian2D.createKernelImage(size, sigma).pixels;
     }
 
     protected static MBFImage lowPass(float[][] kernel, MBFImage image){
+        /**
+         * just runs the low pass (actually just runs the convolution templarte process with a given kernel)
+         *  the kernel comes from the gauseian and sigma in in getKernel
+         */
         MyConvolution myCon = new MyConvolution(kernel);
         image.processInplace(myCon);
         return image;
@@ -80,6 +91,9 @@ public class MyHybridImages {
 
 
     protected static MBFImage highPass(float[][] kernel, MBFImage image){
+        /**
+         * Loops through and takes the values of a low pass version of the image from the original.
+         */
         int cols = image.getCols();
         int rows = image.getRows();
         MBFImage clone = image.clone();
