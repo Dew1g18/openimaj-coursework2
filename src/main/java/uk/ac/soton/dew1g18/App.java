@@ -8,10 +8,14 @@ import org.openimaj.image.colour.ColourSpace;
 import org.openimaj.image.colour.RGBColour;
 import org.openimaj.image.processing.convolution.FGaussianConvolve;
 import org.openimaj.image.processing.convolution.Gaussian2D;
+import org.openimaj.image.processing.resize.ResizeProcessor;
 import org.openimaj.image.typography.hershey.HersheyFont;
 
+import javax.swing.*;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * OpenIMAJ Hello world!
@@ -99,19 +103,26 @@ public class App {
 //            DisplayUtilities.display(lowImage);
 
             MyHybridImages mh = new MyHybridImages();
-            DisplayUtilities.display(
-//                    mh.makeHybrid(lowImage, 3f, highImage, 5f)//smol 3
-                    mh.makeHybrid(dave, 5f, sam, 5f)//smol 2
-//                    mh.makeHybrid(lowImage, 5f, highImage, 3f)//smol 1
-            );
+
+            MBFImage image0 = mh.makeHybrid(dave, 5f, sam, 5f);//smol 2
+            downSample(image0);
+
+//            DisplayUtilities.display(
+////                    mh.makeHybrid(lowImage, 3f, highImage, 5f)//smol 3
+//                     image0
+////                    mh.makeHybrid(lowImage, 5f, highImage, 3f)//smol 1
+//            );
 
             /**
              * including the reverse version cause I cant decide which is better.
              */
 
-            DisplayUtilities.display(
-                    mh.makeHybrid(samClone, 4f, davClone, 3f)//reverse)
-            );
+
+            MBFImage image1 = mh.makeHybrid(samClone, 4f, davClone, 3f);//reverse)
+            downSample(image1);
+//            DisplayUtilities.display(
+//                    image1
+//            );
 
             /**
              * best so far below for testing
@@ -128,9 +139,67 @@ public class App {
 
 
 
+//            DisplayUtilities.display(image0);
+//            DisplayUtilities.display(samp4);
+//
+//            DisplayUtilities.updateNamed("DownSample", image0, "");
+//            DisplayUtilities.updateNamed("DownSample", samp4, "");
+//            DisplayUtilities.positionNamed("DownSample", 100,100);
+//
+
+//            DisplayUtilities.displayLinked("DownSample", 5,samples);
+
+
+
+
         }catch(Exception e){
             e.printStackTrace();
         }
+
+    }
+
+    public static void downSample(MBFImage image){
+
+        /**
+         * downsampled versions
+         */
+
+
+        ResizeProcessor rp = new ResizeProcessor(1f);
+
+        MBFImage canvas = new MBFImage(image.getWidth()*2,image.getHeight());
+
+        MBFImage samp1 = image.clone();
+        samp1 = rp.halfSize(samp1);
+
+
+        MBFImage samp2 = samp1.clone();
+        samp2 = rp.halfSize(samp2);
+
+
+        MBFImage samp3 = samp2.clone();
+        samp3  = rp.halfSize(samp3);
+
+
+        MBFImage samp4 = samp3.clone();
+        samp4 = rp.halfSize(samp4);
+
+
+        int distAcrossCanvas = 0;
+
+        canvas.drawImage(image, distAcrossCanvas,0);
+        distAcrossCanvas+=image.getCols();
+
+        canvas.drawImage(samp1, distAcrossCanvas,0);
+        distAcrossCanvas+=samp1.getCols();
+
+        canvas.drawImage(samp2, distAcrossCanvas,0);
+        distAcrossCanvas+=samp2.getCols();
+
+        canvas.drawImage(samp3, distAcrossCanvas,0);
+
+        DisplayUtilities.display(canvas);
+
 
     }
 }
