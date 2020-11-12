@@ -91,12 +91,22 @@ public class App {
          * Hybrid image practice space
          */
         try {
+
 //            MBFImage dave = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav2.jpg"));
 //            MBFImage sam = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam2.jpg"));
-            MBFImage dave = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav2.jpg"));
-            MBFImage sam = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam2.jpg"));
+//            MBFImage dave = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolDav2.jpg"));
+//            MBFImage sam = ImageUtilities.readMBF(new File("C:\\Users\\davew\\openimaj-coursework2\\src\\main\\java\\uk\\ac\\soton\\dew1g18\\hybrid-images\\smolSam2.jpg"));
+
+/**
+ * Sorry that my images have such long URLs, they're selfies from myself and a housemate and so I have them stored in google photos,
+ * this generates incredibly long URLs for when you want to get just the image.
+ */
+            MBFImage dave = ImageUtilities.readMBF(new URL("https://lh3.googleusercontent.com/Mgj9-NbNir0i8dLtA6u-QIg-c0ixepyt7yxYlkGO_fV-DaxDreoKUwDQjtHxJsmIuxMgOT0XV2r6D7BkA18Xr12UI0mJnR2fvrHxZDJ3_ESXp73ytYo3WgxDTOmDGGnCB-KJ7R3xR92SA2k711AFuHk4jj7N15yboS2tcPjNBgDX5vVa4W9BAr5BP1GNczNIJ1R5p93mKsDb4wwdQiB4zM-1XlP7zSoflrV0lqUVlNqo4KIfNcOdcjl_F36JWAFj0Vmw3PkHRgKLk4n-JirqPMB1fkFxbqRVZbET7AoJVRL_3jmlwk22BbmEjxARc3JO4QZ3eqaoERBzCGkvGqV2mW3RjuBWw1kmbAUXStcVOPpk0kHAD53WYuRyAPDkd-V7rwT-u19Ggua2gZaMdy2zuOyC69084AkLAJvEOC5pntsy97cI1bf9TtjSz_UevSRRyiM40OQspYoexhe4VIm_hxQ_cQRCytc3hP4okdu53iIoUwurq_tWctGl7inI76y82FmxkOeos0dAW3tHnfr5hY5coWOjsY8gVLdF4fujGLDVJvMb-TNMos631ngw6DugYCgF4hh0D_HMnPlpE9hUXy1BrD-K0lhwwwFn9WOwR12VRWwpsWTbBPdMixNs6f8uDowRRAQKSrGoVFMZEd7OIyq8jCOxz-wxRQMI8AsR25MUiGPGgNPrvRg_XI6PmQ=w300-h624-no?authuser=0"));
+            MBFImage sam = ImageUtilities.readMBF(new URL("https://lh3.googleusercontent.com/sQ-1uztKzCytPgT2E-8BEmvFNUjkdzbHD_ca9Cu9H8pHetIjnmBzHUC6SZOCo6OPYCHRbFYeoKj-hUgk2gsCbsX-MBA2-vL-XwNTHLjJnVeOiLOTzAjB-hzV5jMQV12Fvmix41foRhP4BPpWxOTmqlbcBNJrfHlp2QdRwLtg356mGo7IGQ36DA7zaJlxqz9VPqhn5mxUbbPicPdVoDRQlBoMs46UPoEkxUvB950GEnbsNWoTnbcFa5JgjZUBmNl-AM6lZW9y8_viZTDEqY3_nMa3ntJCsdxiG4cIbPDEb_yZ6jGEM-Jk5XLYtKUGxHIyMwkwRWtAMtNJGwuNF1JkQY2r8Xyol4VBLvVJGVDSd-zAEcxQH1gzNIfz9WoeW7a5-7f3Ve2Y3e_RmufDVSrz9zl_8NbOeDyGDhpIa-Pe9bZ59EiQ52Bnxv_HcB296JQDsuR8TNFnKje6d2DA52N477DYH6QWAh4NKfcZmlgllloflKTB9lrxfLvPzs00RNC1oSjzeQDI83xVv8Qz_6lCXYeeAwCinZgHG6HyialFBgZ_0Oyh3b8R-AiZqao1crgEVzfOqhhlFvtEaJkO4BgPwKaAuWZrMAuBYUCOL69x-4V_1h8gTMoSsAAxLh32njBLNMxkuD6pBm674W1TiSKjOM4NN6OizIMJM1S6Ny3KkByYe8BqSmBGWWN5_r82Cg=w300-h624-no?authuser=0"));
+
             MBFImage davClone = dave.clone();
             MBFImage samClone = sam.clone();
+
 
 
 //            DisplayUtilities.display(highImage);
