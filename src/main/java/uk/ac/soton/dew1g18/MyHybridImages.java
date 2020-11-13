@@ -34,6 +34,17 @@ public class MyHybridImages {
 //        DisplayUtilities.display(lowImage);
 //        DisplayUtilities.display(highImage);
 
+
+        /**
+         * Hi, just before submission I am having a huge internal conflict about what to submit, I wanted to find
+         * a good image to hide a rick roll, I also made one that's really funny which I call Trumpster fire,
+         * but none of these quite demonstrated the characteristics of the monroe/einstein or cat/dog image so
+         * instead I submitted a selfie which changes from my housemate to myself..
+         *
+         * If you want to see trumpster fire send me an email haha, it might be my teams profile picture soon..
+         */
+
+
         return combine(lowImage, highImage);
     }
 
