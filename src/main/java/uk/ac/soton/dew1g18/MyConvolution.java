@@ -42,6 +42,12 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
 
 
 //
+
+        /**
+         * For a while I had been having troubles working out why I was just getting black images with only white spots
+         * in the top left, turns out I was concurrently modifying the image which was obviously a huge problem, so
+         * now I have a clone to read from while I modify the image.
+         */
         FImage clone = image.clone();
 //        for(int y=0; y<imRows; y++){
 //            for(int x = 0; x<tc+1; x++){
@@ -60,8 +66,8 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
 //            }
 //        }
         /**
-         * Was zero padding by looping through the edges, POINTLESS!!
-         * Just set the whole image to black, your reading from a clone to avoid concurrent modification anyway!!
+         * Was zero padding by looping through the edges, not neccesary as I misunderstood what I was supposed to be
+         * zero padding, I have a funnier and more jank way of doing it below that works a treat instead
          */
 //        image.fill(0f);
 
@@ -83,9 +89,9 @@ public class MyConvolution implements SinglebandImageProcessor<Float, FImage> {
                         }catch(ArrayIndexOutOfBoundsException e){
                             //Sum stays the same
                             /**
-                             * I know this looks jankey but this was the quickest way I could see to implement zero
-                             * padding. I had already had tested the algorithm with the excerpt's algorithm where
-                             * the outside pixels are just ignored, however now I just dont add anything when I try to
+                             * I know this looks jankey but this was the simplest and cleanest way I could see to implement zero
+                             * padding. I had already had tested the algorithm with the excerpt's method of
+                             * ignoring the outside pixels, however now I go right to the corners and just dont add anything when I try to
                              * process a pixel outside the image boundaries. This is the same as adding something
                              * multiplied  by zero.
                              */
